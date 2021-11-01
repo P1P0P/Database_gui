@@ -21,7 +21,7 @@ public:
 
 private slots:
     void on_runButton_clicked();
-
+    void on_delButton_clicked();
     void on_tablesList_itemDoubleClicked(QListWidgetItem *item);
 
 private:

@@ -72,6 +72,11 @@ void MainWindow::on_runButton_clicked()
     ui->inputTextEdit->setText("");
 }
 
+void MainWindow::on_delButton_clicked()
+{
+    ui->logsTextBrowser->clear();
+}
+
 void MainWindow::on_tablesList_itemDoubleClicked(QListWidgetItem *item)
 {
     m_model->setQuery("SELECT * FROM " + item->text());

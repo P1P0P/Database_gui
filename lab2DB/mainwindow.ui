@@ -81,11 +81,22 @@
         <widget class="QTextEdit" name="inputTextEdit"/>
        </item>
        <item>
-        <widget class="QPushButton" name="runButton">
-         <property name="text">
-          <string>Run</string>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QPushButton" name="delButton">
+           <property name="text">
+            <string>Delete queries</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="runButton">
+           <property name="text">
+            <string>Run</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
