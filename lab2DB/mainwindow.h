@@ -27,7 +27,6 @@ private slots:
 private:
     QSqlDatabase m_db;
     QSqlQueryModel* m_model;
-    QSqlQueryModel* m_model1;
     QFile file;
     QDateTime time1;
     Ui::MainWindow *ui;

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 #include <QDateTime>
 #include <QtSql>
 
@@ -15,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
     if(!dialog->exec())
         exit(0);
     m_model = new QSqlQueryModel;
-    m_model1 = new QSqlQueryModel;
     ui->resultTable->setModel(m_model);
     ui->tablesList->addItems(m_db.tables());
     QSqlQuery myQ(m_db);
@@ -28,8 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
         ui->tablesList->addItem(rec.value(i).toString());
     }
     }
-    //ui->tablesList->setModel(m_model1);
-    //m_model1->setQuery("SELECT table_name FROM INFORMATION_SCHEMA.tables WHERE table_type='VIEW' AND table_schema=ANY(current_schemas(false)) ORDER BY table_name;");
     file.setFileName("logs.txt");
     file.open(QIODevice::ReadWrite);
     ui->logsTextBrowser->setText(file.readAll());

@@ -19,15 +19,23 @@ initialization::~initialization()
 
 void initialization::on_pushButton_clicked()
 {
-
+    if(ui->ip_Label->text() == "" || ui->password_Label->text() == ""|| ui->name_Label->text() == "" || ui->port_Label->text() == "" || ui->login_Label->text() == ""){
+        ui->m_error->setText("Please, fill in all input fields");
+    }
+    else{
     time2 = QDateTime::currentDateTime();
-
     m_db.setDatabaseName(ui->name_Label->text());
     m_db.setHostName(ui->ip_Label->text());
     m_db.setPassword(ui->password_Label->text());
     m_db.setPort(ui->port_Label->text().toInt());
     m_db.setUserName(ui->login_Label->text());
 
+    QTextStream in(&file_conn);
+    QString line = in.readLine();
+    while (!line.isNull()) {
+        process_line(line);
+        line = in.readLine();
+    }
 
 
     QTextStream out_conn(&file_conn);
@@ -44,4 +52,5 @@ void initialization::on_pushButton_clicked()
         accept();
     else
         ui->m_error->setText(m_db.lastError().text());
+    }
 }
