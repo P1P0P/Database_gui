@@ -83,4 +83,8 @@ void MainWindow::on_tablesList_itemDoubleClicked(QListWidgetItem *item)
     ui->errorsTextBrowser->clear();
 }
 
+QString MainWindow::getDbName(MainWindow &k)
+{
+    return k.m_db.databaseName();
+}
 

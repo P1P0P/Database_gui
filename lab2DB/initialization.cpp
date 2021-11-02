@@ -32,11 +32,10 @@ void initialization::on_pushButton_clicked()
 
     QTextStream in(&file_conn);
     QString line = in.readLine();
-    while (!line.isNull()) {
-        process_line(line);
-        line = in.readLine();
-    }
-
+//    while (!line.isNull()) {
+//            process_line(line);
+//            line = in.readLine();
+//        }
 
     QTextStream out_conn(&file_conn);
 

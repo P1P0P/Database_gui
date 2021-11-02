@@ -18,6 +18,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = NULL);
     ~MainWindow();
+    QString getDbName(MainWindow&);
 
 private slots:
     void on_runButton_clicked();
