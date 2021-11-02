@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QDialog>
 #include <QSqlDatabase>
+#include <QFile>
+#include <QDateTime>
 
 namespace Ui {
 class initialization;
@@ -23,6 +25,8 @@ private slots:
 private:
     QSqlDatabase& m_db;
     Ui::initialization *ui;
+    QFile file_conn;
+    QDateTime time2;
 };
 
 #endif // INITIALIZATION_H

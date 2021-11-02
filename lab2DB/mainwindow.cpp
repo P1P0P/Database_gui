@@ -55,6 +55,7 @@ void MainWindow::on_runButton_clicked()
         ui->logsTextBrowser->setText(ui->logsTextBrowser->toPlainText() + time1.toString("[dd.MM.yy , hh:mm:ss] -> ") + ui->inputTextEdit->toPlainText() + '\n');
         QTextStream out(&file);
         out << time1.toString("[dd.MM.yy , hh:mm:ss] -> ") + ui->inputTextEdit->toPlainText() + '\n';
+
     }
     ui->tablesList->clear();
     ui->tablesList->addItems(m_db.tables());
@@ -74,7 +75,10 @@ void MainWindow::on_runButton_clicked()
 
 void MainWindow::on_delButton_clicked()
 {
-    ui->logsTextBrowser->clear();
+    file.remove();
+    ui->logsTextBrowser->setText("");
+    file.setFileName("logs.txt");
+    file.open(QIODevice::ReadWrite);
 }
 
 void MainWindow::on_tablesList_itemDoubleClicked(QListWidgetItem *item)

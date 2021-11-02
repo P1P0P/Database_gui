@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>875</width>
-    <height>227</height>
+    <height>239</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,54 +20,54 @@
       <number>0</number>
      </property>
      <item row="0" column="0">
-      <widget class="QLabel" name="name_Label">
+      <widget class="QLabel" name="db_name_Label">
        <property name="text">
         <string>DataBase name</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="name_Label"/>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="ip_Label">
+      <widget class="QLabel" name="db_ip_Label">
        <property name="text">
         <string>IP</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_3"/>
+      <widget class="QLineEdit" name="ip_Label"/>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="port_Label">
+      <widget class="QLabel" name="db_port_Label">
        <property name="text">
         <string>Port</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="port_Label"/>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="login_Label">
+      <widget class="QLabel" name="db_login_Label">
        <property name="text">
         <string>Login</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="password_Label">
+      <widget class="QLabel" name="db_password_Label">
        <property name="text">
         <string>Password</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLineEdit" name="lineEdit_5"/>
+      <widget class="QLineEdit" name="password_Label"/>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_4"/>
+      <widget class="QLineEdit" name="login_Label"/>
      </item>
     </layout>
    </item>
