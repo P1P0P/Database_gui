@@ -5,8 +5,8 @@
 
 initialization::initialization(QSqlDatabase& db) :
     QDialog(),
-    ui(new Ui::initialization),
-    m_db(db)
+    m_db(db),
+    ui(new Ui::initialization)
 {
     ui->setupUi(this);
     file_conn.setFileName("Connections.txt");
@@ -36,19 +36,20 @@ void initialization::on_pushButton_clicked()
         bool new_user = true;
 
         QTextStream in(&file_conn);
+        in.seek(0);
         QString line = in.readLine();
-        qint64 pos;
+//      qint64 pos;
         while (!line.isNull()) {
             if(line == ui->login_Label->text()){
                 new_user = false;
-                pos = in.pos();
+                //pos = in.pos();
                 line = in.readLine();
                 if(line == ui->password_Label->text()){
                     flag_pass = true;
                 }
-                else {
-                    line = in.seek(pos);
-                }
+//              else {
+//                  line = in.seek(pos);
+//              }
             }
             line = in.readLine();
         }
