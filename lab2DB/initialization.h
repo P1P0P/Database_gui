@@ -26,6 +26,7 @@ private:
     QSqlDatabase& m_db;
     Ui::initialization *ui;
     QFile file_conn;
+    QFile temp;
     QDateTime time2;
 };
 

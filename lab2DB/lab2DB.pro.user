@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 5.0.0, 2021-11-02T11:50:48. -->
+<!-- Written by QtCreator 5.0.0, 2021-11-02T13:37:50. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -244,7 +244,6 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/dev/Qt_Project/Database_gui/build-lab2DB-Desktop_Qt_5_13_2_MinGW_64_bit-Debug</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
