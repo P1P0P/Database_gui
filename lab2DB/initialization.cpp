@@ -1,7 +1,7 @@
 #include "initialization.h"
 #include "ui_initialization.h"
 #include <QFile>
-
+#include <QSettings>
 
 initialization::initialization(QSqlDatabase& db) :
     QDialog(),
@@ -62,18 +62,28 @@ void initialization::on_pushButton_clicked()
             m_db.setPassword(ui->password_Label->text());
             m_db.setPort(ui->port_Label->text().toInt());
             m_db.setUserName(ui->login_Label->text());
+            if(m_db.open()){
+                QSettings settings;
+                settings.beginGroup("/Database_browser/settings");
+                settings.setValue("Database_name", ui->name_Label->text()    );
+                settings.setValue("Host_ip"      , ui->ip_Label->text()      );
+                settings.setValue("P0rt"         , ui->port_Label->text()    );
+                settings.setValue("L0g1n"        , ui->login_Label->text()   );
+                settings.setValue("Password"     , ui->password_Label->text());
+                settings.sync();
+                settings.endGroup();
 
-            file_conn.close();
-            file_conn.open(QIODevice::Append);
-            out_conn<< time2.toString("[dd.MM.yy , hh:mm:ss] -> ")
-                       + ui->name_Label->text() + '\n'
-                       + ui->ip_Label->text() + '\n'
-                       + ui->port_Label->text() + '\n'
-                       + ui->login_Label->text() + '\n'
-                       + ui->password_Label->text() + '\n' + '\n';
+//                file_conn.close();
+//                file_conn.open(QIODevice::Append);
+//                out_conn<< time2.toString("[dd.MM.yy , hh:mm:ss] -> ")
+//                            + ui->name_Label->text()     + '\n'
+//                            + ui->ip_Label->text()       + '\n'
+//                            + ui->port_Label->text()     + '\n'
+//                            + ui->login_Label->text()    + '\n'
+//                            + ui->password_Label->text() + '\n' + '\n';
+            }
 
-
-            if(m_db.open())
+            if(m_db.isOpen())
                 accept();
             else
                 ui->m_error->setText(m_db.lastError().text());

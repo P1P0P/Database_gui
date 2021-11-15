@@ -25,6 +25,8 @@ private slots:
     void on_delButton_clicked();
     void on_tablesList_itemDoubleClicked(QListWidgetItem *item);
 
+    void on_action_triggered();
+
 private:
     QSqlDatabase m_db;
     QSqlQueryModel* m_model;

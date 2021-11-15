@@ -8,24 +8,26 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
-    m_db = QSqlDatabase::addDatabase("QSQLITE");
+    m_db = QSqlDatabase::addDatabase("QPSQL");
     dialog = new initialization(m_db);
     //dialog->show();
-    if(!dialog->exec())
-        exit(0);
+
+    QSettings settings;
+    settings.beginGroup("/Database_browser/settings");
+    m_db.setDatabaseName(settings.value("Database_name", "fn1131_2021" ).toString());
+    m_db.setHostName    (settings.value("Host_ip"      , "195.19.32.74").toString());
+    m_db.setPort        (settings.value("P0rt"         , 5432          ).toInt()   );
+    m_db.setUserName    (settings.value("L0g1n"        , "student"     ).toString());
+    m_db.setPassword    (settings.value("Password"     , "bmstu"       ).toString());
+    settings.endGroup();
+
+    if (!m_db.open())
+        ui->errorsTextBrowser->setText("Error: " + m_db.lastError().text());
     m_model = new QSqlQueryModel;
     ui->resultTable->setModel(m_model);
     ui->tablesList->addItems(m_db.tables());
-    QSqlQuery myQ(m_db);
-    myQ.exec("SELECT table_name FROM INFORMATION_SCHEMA.tables WHERE table_type='VIEW' AND table_schema=ANY(current_schemas(false)) ORDER BY table_name;");
-    while(myQ.next())
-    {
-        QSqlRecord rec = myQ.record();
-    for(int i = 0; i < rec.count(); i++)
-    {
-        ui->tablesList->addItem(rec.value(i).toString());
-    }
-    }
+
+
     file.setFileName("logs.txt");
     file.open(QIODevice::ReadWrite);
     ui->logsTextBrowser->setText(file.readAll());
@@ -86,5 +88,13 @@ void MainWindow::on_tablesList_itemDoubleClicked(QListWidgetItem *item)
 QString MainWindow::getDbName(MainWindow &k)
 {
     return k.m_db.databaseName();
+}
+
+
+
+
+void MainWindow::on_action_triggered()
+{
+
 }
 
