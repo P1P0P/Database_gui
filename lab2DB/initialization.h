@@ -13,11 +13,13 @@ class initialization;
 
 class initialization : public QDialog
 {
+    friend class MainWindow;
     Q_OBJECT
 
 public:
     explicit initialization(QSqlDatabase& db);
     ~initialization();
+
 
 private slots:
     void on_pushButton_clicked();

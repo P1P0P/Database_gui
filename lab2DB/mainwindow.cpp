@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     m_db = QSqlDatabase::addDatabase("QPSQL");
     dialog = new initialization(m_db);
-    //dialog->show();
 
     QSettings settings;
     settings.beginGroup("/Database_browser/settings");
@@ -19,13 +18,14 @@ MainWindow::MainWindow(QWidget *parent)
     m_db.setPort        (settings.value("P0rt"         , 5432          ).toInt()   );
     m_db.setUserName    (settings.value("L0g1n"        , "student"     ).toString());
     m_db.setPassword    (settings.value("Password"     , "bmstu"       ).toString());
+    qDebug() << settings.fileName();
     settings.endGroup();
 
     if (!m_db.open())
         ui->errorsTextBrowser->setText("Error: " + m_db.lastError().text());
     m_model = new QSqlQueryModel;
     ui->resultTable->setModel(m_model);
-    ui->tablesList->addItems(m_db.tables());
+    update_table_list();
 
 
     file.setFileName("logs.txt");
@@ -55,19 +55,18 @@ void MainWindow::on_runButton_clicked()
         out << time1.toString("[dd.MM.yy , hh:mm:ss] -> ") + ui->inputTextEdit->toPlainText() + '\n';
 
     }
-    ui->tablesList->clear();
-    ui->tablesList->addItems(m_db.tables());
+    update_table_list();
+
     QSqlQuery myQ(m_db);
     myQ.exec("SELECT table_name FROM INFORMATION_SCHEMA.tables WHERE table_type='VIEW' AND table_schema=ANY(current_schemas(false)) ORDER BY table_name;");
 
-
-    while(myQ.next())
+    /*while(myQ.next())
     {
         QSqlRecord rec = myQ.record();
     for(int i = 0; i < rec.count(); i++)
     {
         ui->tablesList->addItem(rec.value(i).toString());
-    }}
+    }}*/
     ui->inputTextEdit->setText("");
 }
 
@@ -90,11 +89,20 @@ QString MainWindow::getDbName(MainWindow &k)
     return k.m_db.databaseName();
 }
 
-
-
-
 void MainWindow::on_action_triggered()
 {
-
+    if (dialog->exec() == QDialog::Accepted){
+        update_table_list();
+        m_model->clear();
+        setWindowTitle(getDbName(*this));
+    }
 }
+
+void MainWindow::update_table_list()
+{
+    ui->tablesList->clear();
+    ui->tablesList->addItems(m_db.tables());
+}
+
+
 

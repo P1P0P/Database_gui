@@ -7,6 +7,7 @@ TEMPLATE = app
 
 QTPLUGIN += QPSQL
 
+
 SOURCES += main.cpp\
         mainwindow.cpp \
     initialization.cpp

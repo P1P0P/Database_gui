@@ -12,7 +12,7 @@ QT_END_NAMESPACE
 class initialization;
 class MainWindow : public QMainWindow
 {
-    friend initialization;
+    friend class initialization;
     Q_OBJECT
 
 public:
@@ -34,6 +34,6 @@ private:
     QDateTime time1;
     Ui::MainWindow *ui;
     initialization* dialog;
-
+    void update_table_list();
 };
 #endif // MAINWINDOW_H
