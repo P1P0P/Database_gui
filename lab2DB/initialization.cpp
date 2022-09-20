@@ -9,8 +9,6 @@ initialization::initialization(QSqlDatabase& db) :
     ui(new Ui::initialization)
 {
     ui->setupUi(this);
-    file_conn.setFileName("Connections.txt");
-    file_conn.open(QIODevice::ReadOnly);
     temp.setFileName("temp.txt");
     temp.open(QIODevice::ReadWrite);
     QSettings settings;
@@ -21,7 +19,6 @@ initialization::initialization(QSqlDatabase& db) :
     ui->login_Label->setText    (settings.value("L0g1n"        , "student"     ).toString());
     ui->password_Label->setText (settings.value("Password"     , "bmstu"       ).toString());
     settings.sync();
-    qDebug() << " " << settings.fileName();
     settings.endGroup();
 }
 
@@ -50,7 +47,6 @@ void initialization::on_pushButton_clicked()
             settings.setValue("L0g1n"        , ui->login_Label->text()   );
             settings.setValue("Password"     , ui->password_Label->text());
             settings.sync();
-            qDebug() << settings.fileName();
             settings.endGroup();
         }
 
@@ -58,7 +54,6 @@ void initialization::on_pushButton_clicked()
             accept();
         else
             ui->m_error->setText(m_db.lastError().text());
-        file_conn.close();
 
     }
 
